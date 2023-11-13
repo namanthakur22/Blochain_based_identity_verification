@@ -1,0 +1,111 @@
+{% load static %}
+{% load socialaccount %}
+<!DOCTYPE html>
+<html lang="en">
+    {% include "_head.html" %}
+    <body>
+        <div>
+            {% include "_header.html" %}
+            {% block content %}
+            {% endblock content %}
+            <footer class="p-4 bg-gray-50 sm:p-6 dark:bg-gray-800">
+                <div class="mx-auto max-w-screen-xl">
+                    <div class="md:flex md:justify-between">
+                        <div class="mb-6 md:mb-0">
+                            <a href="{% url 'index' %}" class="flex items-center">
+                                <!-- <img src="https://flowbite.com/docs/images/logo.svg" class="mr-3 h-8" alt="FlowBite Logo" /> -->
+                                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">OrgTrust</span>
+                            </a>
+                        </div>
+                        <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+                            <div>
+                                <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Follow us</h2>
+                                <ul class="text-gray-600 dark:text-gray-400">
+                                    <li class="mb-4">
+                                        <a href="#" class="hover:underline ">Github</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="hover:underline">Discord</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
+                                <ul class="text-gray-600 dark:text-gray-400">
+                                    <li class="mb-4">
+                                        <a href="#" class="hover:underline">Privacy Policy</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="hover:underline">Terms &amp; Conditions</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+                    <div class="flex justify-center lg:justify-between">
+                        <span class="text-xs text-center md:text-sm lg:text-sm md:text-left text-gray-500 lg:text-left dark:text-gray-400">© OrgTrust 2023 - All Right Reserved</a>
+                        </span>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <div id="loginModal" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed right-0 left-0 top-4 z-50 justify-center items-center h-modal md:h-full md:inset-0">
+            <section class="relative w-full max-w-md h-auto">
+                    <div class="w-full related rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+                        <div class="p-6 space-y-4 md:space-y-6 sm:p-8 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                            <div class="flex justify-between">
+                                <span class="text-xl font-bold leading-tight tracking-wider text-gray-900 md:text-2xl dark:text-white">
+                                    Sign in to your account
+                                </span>
+                                <button type="button" class=" text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" data-modal-toggle="loginModal">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                </button>
+                            </div>
+                            <a href="{% provider_login_url 'google' %}" class="group flex items-center justify-center rounded-lg bg-gray-100 p-3 hover:bg-gray-200 hover:shadow dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600">
+                                <svg class="h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 48 48">
+                                  <path fill="#fbc02d" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12 s5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24s8.955,20,20,20 s20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"></path>
+                                  <path fill="#e53935" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039 l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"></path>
+                                  <path fill="#4caf50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36 c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"></path>
+                                  <path fill="#1565c0" d="M43.611,20.083L43.595,20L42,20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571 c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"></path>
+                                </svg>
+                                <span class="ml-3 whitespace-nowrap text-sm font-medium tracking-wider text-gray-700 dark:text-gray-300">Sign in with Google</span>
+                              </a>
+                              <div class="relative flex items-center">
+                                <div class="flex-grow border-t border-gray-400"></div>
+                                <span class="flex-shrink mx-4 text-gray-400">or</span>
+                                <div class="flex-grow border-t border-gray-400"></div>
+                              </div>
+                            <form class="space-y-4 md:space-y-6" action="#">
+                                <div>
+                                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
+                                    <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="">
+                                </div>
+                                <div>
+                                    <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                                    <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-start">
+                                        <div class="flex items-center h-5">
+                                          <input id="remember" aria-describedby="remember" type="checkbox" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800" required="">
+                                        </div>
+                                        <div class="ml-3 text-sm">
+                                          <label for="remember" class="text-gray-500 dark:text-gray-300">Remember me</label>
+                                        </div>
+                                    </div>
+                                    <a href="#" class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
+                                </div>
+                                <button type="submit" class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign in</button>
+                                <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+                                    Don’t have an account yet? 
+                                    <a href="{% url 'create' %}" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</button>
+                                </p>
+                            </form>
+                        </div>
+                    </div>
+            </section>
+        </div>
+        {% include "_scripts.html" %}
+    </body>
+</html>

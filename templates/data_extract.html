@@ -1,0 +1,66 @@
+{% extends "_base.html" %}
+{% load static %}
+{% block content %}
+
+<section class="bg-white dark:bg-gray-900">
+    <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
+        <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Extract Data from Resume</h2>
+        <form method="post" action="{% url 'data_extract' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="flex items-center justify-center w-full">
+                <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                    <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                        <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                        </svg>
+                        <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400">PNG (MAX 10 MB)</p>
+                    </div>
+                    <input id="dropzone-file" name="pdf_file" type="file" class="hidden" accept=".pdf" />
+                </label>
+            </div>
+            <button type="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
+                Process PDF
+            </button>
+        </form>
+        {% if filename %}
+            <div id="info-popup" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full">
+                <div class="relative p-4 w-full max-w-lg h-full md:h-auto">
+                    <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 md:p-8">
+                        <div class="mb-4 text-sm font-light text-gray-500 dark:text-gray-400">
+                            <h3 class="mb-3 text-2xl font-bold text-gray-900 dark:text-white">File Name: {{ filename }}</h3>
+                            <dl class="max-w-md text-gray-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700">
+                                <div class="flex flex-col pb-3">
+                                    <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Name</dt>
+                                    <dd class="text-lg font-semibold">{{ name }}</dd>
+                                </div>
+                                <div class="flex flex-col py-3">
+                                    <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Email Address</dt>
+                                    <dd class="text-lg font-semibold">{{ email }}</dd>
+                                </div>
+                                <div class="flex flex-col pt-3">
+                                    <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Phone number</dt>
+                                    <dd class="text-lg font-semibold">{{ phone }}</dd>
+                                </div>
+                                <div class="flex flex-col pt-3">
+                                    <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Skills</dt>
+                                    <dd class="text-lg font-semibold">{{ skills }}</dd>
+                                </div>
+                                <div class="flex flex-col pt-3">
+                                    <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Education</dt>
+                                    <dd class="text-lg font-semibold">{{ education }}</dd>
+                                </div>
+                            </dl>
+                        </div>
+                        <div class="justify-between items-center pt-0 space-y-4 sm:flex sm:space-y-0">
+                            <div class="items-center space-y-4 sm:space-x-4 sm:flex sm:space-y-0">
+                                <button id="close-modal" type="button"  class="py-2 px-4 w-full text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 sm:w-auto hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+  </section>
+{% endblock content %}

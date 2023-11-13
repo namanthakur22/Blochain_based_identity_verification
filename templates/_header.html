@@ -1,0 +1,63 @@
+{% load socialaccount %}
+<header>
+    <nav class="bg-white border-gray-200 dark:bg-gray-900">
+        <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl px-4 md:px-6 py-2.5">
+            <a href="{% url 'index' %}" class="flex items-center">
+                <!-- <img src="https://flowbite.com/docs/images/logo.svg" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo" /> -->
+                <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">OrgTrust</span>
+            </a>
+            <div class="flex items-center">
+                {% if user.is_authenticated %}
+                <button id="dropdownInformationButton" data-dropdown-toggle="dropdownInformation" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 capitalize" type="button">{{ user.username }}<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                  </svg>
+                </button>
+                
+                <!-- Dropdown menu -->
+                <div id="dropdownInformation" class="z-50 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownInformationButton">
+                      <li>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+                      </li>
+                    </ul>
+                    <div class="py-2">
+                      <a href="{% url 'logout' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+                    </div>
+                </div>
+                {% else %}
+                <button data-modal-toggle="loginModal" type="button" class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-4 py-2 mr-2 text-center">Login</button>
+                {% endif %}
+                <!-- <button data-modal-toggle="loginModal" class="mr-4 text-sm font-medium text-blue-600 dark:text-blue-500 hover:underline">Sign up</button> -->
+                <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
+                    <svg id="theme-toggle-dark-icon" class="hidden w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    <svg id="theme-toggle-light-icon" class="hidden w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+</header>
+<nav x-data="{ showBar: false }" class="sticky top-0 bg-gray-50 dark:bg-gray-700 z-40 dark:shadow-cyan-100/40">
+    <div class="py-3 px-4 mx-auto max-w-screen-xl md:px-6" :class="{ 'sticky top-0 bg-gray-50 dark:bg-gray-700 z-40 dark:shadow-cyan-100/40 shadow-[0px_30px_20px_-20px_rgba(0,0,0,0.2)]' : showBar }" @scroll.window="showBar = (window.pageYOffset > 20) ? true : false">
+        <div class="flex items-center">
+            <ul class="flex flex-row mt-0 mr-6 space-x-8 text-sm font-medium">
+                <li>
+                    <a href="{% url 'index' %}" class="text-gray-900 dark:text-white hover:underline" aria-current="page">Home</a>
+                </li>
+                {% if request.user.is_staff %}
+                <li>
+                    <a href="{% url 'create' %}"  class="text-gray-900 dark:text-white hover:underline">Creator</a>
+                </li>
+                {% endif %}
+                <li>
+                    <a href="{% url 'validate' %}" class="text-gray-900 dark:text-white hover:underline">Validator</a>
+                </li>
+                <li>
+                    <a href="{% url 'trust_score' %}" class="text-gray-900 dark:text-white hover:underline">Trust Scorer</a>
+                </li>
+                <li>
+                    <a href="{% url 'data_extract' %}" class="text-gray-900 dark:text-white hover:underline">Data Extractor</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
