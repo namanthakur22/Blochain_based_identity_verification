@@ -60,3 +60,19 @@
 - **Description:** Scripting for deploying Solidity contracts and managing migration processes.
 
 # Screenshots
+
+![1](https://github.com/namanthakur22/Blockhain_based_identity_verification/assets/25722080/a04d9003-4cb5-4961-aa44-e7451ee7de8f)
+
+![8](https://github.com/namanthakur22/Blockhain_based_identity_verification/assets/25722080/9404c4ec-74e9-4e7e-8307-802382e56de7)
+
+![2](https://github.com/namanthakur22/Blockhain_based_identity_verification/assets/25722080/fc339db0-fea9-40a7-80d0-fbf027050a44)
+
+![3](https://github.com/namanthakur22/Blockhain_based_identity_verification/assets/25722080/eb15027c-fd32-44d5-9b83-f0ebcc26ae3b)
+
+![4](https://github.com/namanthakur22/Blockhain_based_identity_verification/assets/25722080/f4683a0d-7f93-4ecd-9a43-c763beeeaaa8)
+
+![5](https://github.com/namanthakur22/Blockhain_based_identity_verification/assets/25722080/51af783c-3167-4280-b9f7-d7c0081569a2)
+
+![6](https://github.com/namanthakur22/Blockhain_based_identity_verification/assets/25722080/b75ff5b0-649a-4334-ac36-f62f015a5e77)
+
+![7](https://github.com/namanthakur22/Blockhain_based_identity_verification/assets/25722080/971bd242-3cee-4790-8e72-d59b5205cb18)
